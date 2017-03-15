@@ -49,7 +49,7 @@ dotnet_style_explicit_tuple_names = true:warning
 [*.cs]
 # Prefer "var" when type is apparent
 csharp_style_var_for_built_in_types = false:warning
-csharp_style_var_when_type_is_apparent = true:warning
+csharp_style_var_when_type_is_apparent = true:none #because someone thinks ToList() at the end of the expression makes the type apparent
 csharp_style_var_elsewhere = false:warning
 
 # Prefer method-like constructs to have a block body
