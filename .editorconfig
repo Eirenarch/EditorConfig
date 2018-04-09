@@ -44,6 +44,7 @@ dotnet_style_collection_initializer = true:suggestion
 dotnet_style_coalesce_expression = true:warning
 dotnet_style_null_propagation = true:warning
 dotnet_style_explicit_tuple_names = true:warning
+dotnet_style_prefer_inferred_anonymous_type_member_names = true:none #this is annoying when only one name can be inferred
 
 # CSharp code style settings:
 [*.cs]
