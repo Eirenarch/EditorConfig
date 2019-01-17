@@ -1,4 +1,4 @@
-﻿# EditorConfig is awesome:http://EditorConfig.org
+# EditorConfig is awesome:http://EditorConfig.org
 
 # top-most EditorConfig file
 root = true
@@ -39,18 +39,46 @@ dotnet_style_predefined_type_for_locals_parameters_members = true:warning
 dotnet_style_predefined_type_for_member_access = false:warning
 
 # Suggest more modern language features when available
-dotnet_style_object_initializer = true:suggestion
+dotnet_style_object_initializer = true:none
 dotnet_style_collection_initializer = true:suggestion
 dotnet_style_coalesce_expression = true:warning
 dotnet_style_null_propagation = true:warning
 dotnet_style_explicit_tuple_names = true:warning
 dotnet_style_prefer_inferred_anonymous_type_member_names = true:none #this is annoying when only one name can be inferred
 
+#async methods must end in Async
+#! override this in the controllers folder for MVC projects to avoid naming actions with async
+dotnet_naming_rule.async_methods_must_end_in_async.symbols = async_methods
+dotnet_naming_symbols.async_methods.applicable_kinds = method
+dotnet_naming_symbols.async_methods.applicable_accessibilities = *
+dotnet_naming_symbols.async_methods.required_modifiers = async
+dotnet_naming_rule.async_methods_must_end_in_async.style = async_methods_style
+dotnet_naming_style.async_methods_style.required_suffix = Async
+dotnet_naming_style.async_methods_style.capitalization = pascal_case
+dotnet_naming_rule.async_methods_must_end_in_async.severity = warning
+
+#Use PascalCase for public members
+dotnet_naming_rule.public_members_must_be_pascal_case.symbols = public_symbols
+dotnet_naming_symbols.public_symbols.applicable_kinds = property,method,event,field
+dotnet_naming_symbols.public_symbols.applicable_accessibilities = public
+dotnet_naming_rule.public_members_must_be_pascal_case.style = pascal_case_style
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+dotnet_naming_rule.public_members_must_be_pascal_case.severity = warning
+
+# Use PascalCase for constant fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = suggestion
+dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols = constant_fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style = pascal_case_style
+dotnet_naming_symbols.constant_fields.applicable_kinds = field
+dotnet_naming_symbols.constant_fields.applicable_accessibilities = *
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+
+
 # CSharp code style settings:
 [*.cs]
 # Prefer "var" when type is apparent
 csharp_style_var_for_built_in_types = false:warning
-csharp_style_var_when_type_is_apparent = true:none #because someone thinks ToList() at the end of the expression makes the type apparent
+csharp_style_var_when_type_is_apparent = true:none #disabled because of stupid ToList rule
 csharp_style_var_elsewhere = false:warning
 
 # Prefer method-like constructs to have a block body
